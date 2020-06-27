@@ -1,3 +1,14 @@
 {{!-- Create a button in index.handlebars that will submit the user input into the database. --}}
 
 <h2>Burger Frenzy!</h2>
+
+<ul>
+  {{#each burgers}}
+    {{#unless devoured}}
+      {{> cats/cat-block devoured=true}}
+    {{/unless}}
+  {{/each}}
+</ul>
+
+
+
