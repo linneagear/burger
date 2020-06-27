@@ -1,14 +1,58 @@
-{{!-- Create a button in index.handlebars that will submit the user input into the database. --}}
-
-<h2>Burger Frenzy!</h2>
+<h2>EAT-DA-BURGER</h2>
 
 <ul>
   {{#each burgers}}
     {{#unless devoured}}
-      {{> cats/cat-block devoured=true}}
+      {{> burgers/burger-block devoured=true}}
     {{/unless}}
   {{/each}}
 </ul>
 
 
+<ul>
+  {{#each burgers}}
+    {{#if devoured}}
+      {{> burgers/burger-block devoured=false}}
+    {{/if}}
+  {{/each}}
+</ul>
 
+
+{{!-- this is where they will input the burger creation --}}
+<form id="addburger" class="button-size">
+	<textarea type="text" name="burger"></textarea>
+	<button type="submit">Submit</button>
+  <p>Enter a burger you want to eat, then click the "Submit" button.</p>
+</form>
+
+{{!-- left side = uneaten --}}
+
+{{!-- right side = eaten --}}
+
+
+<script type="text/javascript">
+
+// When ADD BURGER is clicked,
+ $("#addburger").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+
+    //create a new burger variable
+    const newBurger = {
+      burger: $("#addburger [name=burger]").val().trim()
+    };
+
+    // Send the POST request.
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: newBurger
+    }).then(
+      function() {
+        console.log("added new burger");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+
+</script>

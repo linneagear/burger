@@ -1,4 +1,4 @@
-const connection = require("/connection.js");
+const connection = require("../config/connection.js");
 
 // predefined functions from MC activity
 function printQuestionMarks(num) {
@@ -33,6 +33,7 @@ function printQuestionMarks(num) {
     // translate array of strings to a single comma-separated string
     return arr.toString();
   };
+
 
 // create the methods that will execute the necessary MySQL commands in the controllers. 
 // These are the methods you will need to use in order to retrieve and store data in your database.
