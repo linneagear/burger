@@ -2,24 +2,40 @@ li {
     padding: 5px;
     margin: 5px;
     background: #faebd7;
+    list-style-type: none;
   }
-  
-  .label {
-    font-weight: bold;
-  }
-  
-  .create-update-form {
-    padding: 5px;
-    margin: 5px;
-    background: aqua;
+
+  ul {
+    display: inline-block;
+    list-style-type: none;
   }
   
   .form-group {
-    margin-bottom: 5px;
+    margin: 5px;
   }
   
   body {
     text-align: center;
     background-color: rgb(245, 245, 245);
     margin-top: 50px;
+    font-family: "serif";
+    color: #141414;
+  }
+
+  .burgList {
+    padding: 3px; 
+    margin: 3px; 
+    background: #f09b69;
+  }
+
+  #eatList {
+    margin: 4px; 
+  }
+
+  .label {
+    font-weight: bold;
+  }
+
+  button {
+    background-color: rgb(233, 139, 61);
   }

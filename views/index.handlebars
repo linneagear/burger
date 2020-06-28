@@ -2,44 +2,59 @@
 
 <ul>
   {{#each burgers}}
-    {{#unless devoured}}
-      {{> burgers/burger-block devoured=true}}
-    {{/unless}}
+  {{#unless devoured}}
+
+  <li class="burgList">
+    {{burger_name}}
+  </li>
+
+  {{/unless}}
   {{/each}}
 </ul>
-
 
 <ul>
   {{#each burgers}}
-    {{#if devoured}}
-      {{> burgers/burger-block devoured=false}}
-    {{/if}}
+  {{#unless devoured}}
+
+  <li id="eatList">
+    <button class="devourIt" data-id="{{id}}">DEVOUR IT!</button>
+  </li>
+
+  {{/unless}}
   {{/each}}
 </ul>
 
+<ul>
+  {{#each burgers}}
+  {{#if devoured}}
 
-{{!-- this is where they will input the burger creation --}}
-<form id="addburger" class="button-size">
-	<textarea type="text" name="burger"></textarea>
-	<button type="submit">Submit</button>
-  <p>Enter a burger you want to eat, then click the "Submit" button.</p>
+  <li class="burgListDevo">{{burger_name}}</li>
+
+  {{/if}}
+  {{/each}}
+</ul>
+
+<h4>Add a new burger</h4>
+<form class="create-form">
+
+  <p>Write the burger you'd like to add, and then click the "Submit" button.</p>
+  <div class="form-group">
+    <label for="burg">Burger Name:</label>
+    <input type="text" id="burg" name="burg">
+  </div>
+  <button type="submit" id="addBurger">Add Burger</button>
 </form>
-
-{{!-- left side = uneaten --}}
-
-{{!-- right side = eaten --}}
-
 
 <script type="text/javascript">
 
-// When ADD BURGER is clicked,
- $("#addburger").on("submit", function(event) {
+  // When ADD BURGER is clicked,
+  $("#addburger").on("submit", function (event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
     //create a new burger variable
     const newBurger = {
-      burger: $("#addburger [name=burger]").val().trim()
+      burger_name: $("#burg [name=burg]").val().trim()
     };
 
     // Send the POST request.
@@ -47,8 +62,24 @@
       type: "POST",
       data: newBurger
     }).then(
-      function() {
+      function () {
         console.log("added new burger");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+
+   $(".devourIt").on("click", function(event) {
+    let id = $(this).data("id");
+
+    // Send the PUT request.
+    $.ajax("/api/burgers/" + id, {
+      type: "PUT",
+      data: true
+    }).then(
+      function() {
+        console.log("changed devoured to true");
         // Reload the page to get the updated list
         location.reload();
       }
