@@ -22,11 +22,13 @@ router.get("/", function (req, res) {
 // post data to API
 router.post("/api/burgers", function (req, res) {
     // create the new object
-    burger.create(["burger_name", "devoured"], [req.body.burger_name, false], function (result) {
-        res.json({ id: result.insertId })
+    burger.create(["burger_name", "devoured"], [req.body.burger_name, req.body.devoured], function (result) {
+        console.log(`result: ${result}`);
+        res.json({ id: result.insertId });
     });
 });
 
+// update is successful
 router.put("/api/burgers/:id", function (req, res) {
     const condition = "id = " + req.params.id;
 
