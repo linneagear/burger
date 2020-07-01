@@ -69,4 +69,7 @@ This application is a burger logger that uses MySQL, Node, Express, Handlebars a
 
 * [Heroku](https://agile-shelf-65251.herokuapp.com/)
 * [Github](https://github.com/linneagear/burger)
-* [Portfolio]()
+* [Portfolio](https://linneagear.github.io/portfolio/frontPage.html)
+
+### Futre Development
+In spending more time building this app, I would insert delete buttons, so you can delete once devoured if you choose. I'd also work more on the design aspect if I had more time, to make it look more like a professional application.
